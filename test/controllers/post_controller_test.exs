@@ -19,6 +19,7 @@ defmodule Til.PostControllerTest do
       conn = build_conn() |> put_req_header("accept", "application/json")
       conn = get conn, post_path(conn, :show, post)
       data  = json_response(conn, 200)["data"]
+      assert data["id"]
     end
   end
 
@@ -60,7 +61,7 @@ defmodule Til.PostControllerTest do
       assert data["body"] == new_body
     end
 
-     test "udpdate fails for the user who is not the creator of the post", %{conn: conn, current_user: current_user} do
+     test "udpdate fails for the user who is not the creator of the post", %{conn: conn} do
       user_params = %{email: "peter@mail.com", username: "peter", password: "password" }
       new_user = create_user(user_params)
 
