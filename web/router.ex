@@ -31,11 +31,12 @@ defmodule Til.Router do
 
      resources "/registration", RegistrationController, only: [:create]
      resources "/session", SessionController, only: [:create]
+     resources "/posts", PostController, only: [:index, :show]
    end
 
    scope "/api", Til do
       pipe_through [:api, :api_auth]
 
-      resources "/posts", PostController, except: [:new, :edit]
+      resources "/posts", PostController, only: [:create, :update]
    end
 end

@@ -1,6 +1,12 @@
 defmodule Til.ErrorView do
   use Til.Web, :view
 
+
+  def render("unauthorized.json", _assigns) do
+    %{errors: "Sorry, don't have permissions to proceeed"}
+  end
+
+
   def render("404.html", _assigns) do
     "Page not found"
   end
